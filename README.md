@@ -11,3 +11,6 @@ Prerequisites:
 1. CircleCI process job in production branch
 # Result
 ![screenshot for instruction](images/1.png)
+![screenshot for instruction](images/2.png)
+![screenshot for instruction](images/3.png)
+![screenshot for instruction](images/4.png)
