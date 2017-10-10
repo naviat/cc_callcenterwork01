@@ -4,10 +4,6 @@ jobs:
     docker:
       - image: php:7.0-apache
     working_directory: /home/saintmedia/
-    branches:
-      only:
-        - devlops
-        - /rc-.*/
     steps:
       - checkout
       - run:
@@ -69,6 +65,8 @@ workflows:
   build-test-and-approval-deploy:
     jobs:
       - build-devs
+          branches:
+            only: devlops
       - hold:
           type: approval
           requires:
@@ -78,4 +76,4 @@ workflows:
             - hold
           filters:
             branches:
-              only: prd
+              only: production
