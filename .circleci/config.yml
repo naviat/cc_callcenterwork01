@@ -4,10 +4,6 @@ jobs:
     docker:
       - image: php:7.0-apache
     working_directory: /home/saintmedia/
-    branches:
-      only:
-        - devlops
-        - /rc-.*/
     steps:
       - checkout
       - run:
