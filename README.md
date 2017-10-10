@@ -10,4 +10,4 @@ Prerequisites:
 1. Administrator approve in CircleCI
 1. CircleCI process job in production branch
 # Result
-![screenshot for instruction](1.png)
+![screenshot for instruction](images/1.png)
