@@ -8,7 +8,7 @@ Prerequisites:
 1. CirlceCI call CodeDeploy Application to deploy source code to Dev Environment
 1. After test Dev Environment, Developer create a pull request.
 1. Administrator click approve for `Hold` job in CircleCI
-1. Admin click `Merge` in Github for merge devlops to production branch.
+1. Admin click `Merge` in Github for merge `devlops` to `production` branch.
 1. CircleCI process job in production branch
 1. CircleCI call CodeDeploy Application to delploy source code to Prod Enviroment
 
