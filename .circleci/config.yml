@@ -18,22 +18,16 @@ jobs:
           command: |
             cd www/callcenter && zip -r callcenter.zip .
             cd ../work && zip -r work.zip .
-            cd ../admin && zip -r admin.zip .
-            cd ../admin_master && zip -r admin_master.zip .
       - run:
           name: Upload Code to S3
           command: |
             aws s3 cp www/callcenter/callcenter.zip s3://tst-cd-willgroup1/callcenter.zip
             aws s3 cp www/work/work.zip s3://tst-cd-willgroup1/work.zip
-            aws s3 cp www/admin/admin.zip s3://tst-cd-willgroup1/admin.zip
-            aws s3 cp www/admin_master/admin_master.zip s3://tst-cd-willgroup1/admin_master.zip
       - deploy:
           name: Deploy to Development Server
           command: |
-            aws deploy create-deployment --application-name callcenter --deployment-group-name callcenter --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=callcenter.zip --region ap-northeast-1
-            aws deploy create-deployment --application-name work --deployment-group-name work --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=work.zip --region ap-northeast-1
-            aws deploy create-deployment --application-name admin --deployment-group-name admin --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=admin.zip --region ap-northeast-1
-            aws deploy create-deployment --application-name admin_master --deployment-group-name admin_master --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=admin_master.zip --region ap-northeast-1
+            aws deploy create-deployment --application-name callcenter --deployment-group-name callcenter --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=callcenter.zip --region ap-southeast-1
+            aws deploy create-deployment --application-name work --deployment-group-name work --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=work.zip --region ap-southeast-1
   build-prd:
     docker:
       - image: php:7.0-apache
@@ -52,22 +46,16 @@ jobs:
           command: |
             cd www/callcenter && zip -r prd-callcenter.zip .
             cd ../work && zip -r prd-work.zip .
-            cd ../admin && zip -r prd-admin.zip .
-            cd ../admin_master && zip -r prd-admin_master.zip .
       - run:
           name: Upload Code to S3
           command: | 
             aws s3 cp www/callcenter/callcenter-prd.zip s3://tst-cd-willgroup1/callcenter-prd.zip
             aws s3 cp www/work/work-prd.zip s3://tst-cd-willgroup1/work-prd.zip
-            aws s3 cp www/admin/admin-prd.zip s3://tst-cd-willgroup1/admin-prd.zip
-            aws s3 cp www/admin_master/admin_master-prd.zip s3://tst-cd-willgroup1/admin_master-prd.zip
       - deploy:
           name: Deploy to Production Server
           command: |
-            aws deploy create-deployment --application-name callcenter --deployment-group-name prd-callcenter --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-callcenter.zip --region ap-northeast-1
-            aws deploy create-deployment --application-name work --deployment-group-name prd-work --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-work.zip --region ap-northeast-1
-            aws deploy create-deployment --application-name admin --deployment-group-name prd-admin --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-admin.zip --region ap-northeast-1
-            aws deploy create-deployment --application-name admin_master --deployment-group-name prd-admin_master --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-admin_master.zip --region ap-northeast-1
+            aws deploy create-deployment --application-name callcenter --deployment-group-name prd-callcenter --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-callcenter.zip --region ap-southeast-1
+            aws deploy create-deployment --application-name work --deployment-group-name prd-work --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-work.zip --region ap-southeast-1
 workflows:
   version: 2
   build-test-and-approval-deploy:
