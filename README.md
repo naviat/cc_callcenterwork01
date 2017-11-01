@@ -10,6 +10,8 @@ Prerequisites:
 1. Administrator click approve for `Hold` job in CircleCI
 1. Admin click `Merge` in Github for merge devlops to production branch.
 1. CircleCI process job in production branch
+1. CircleCI call CodeDeploy Application to delploy source code to Prod Enviroment
+
 # Result
 ![screenshot for instruction](images/1.png)
 ![screenshot for instruction](images/2.png)
