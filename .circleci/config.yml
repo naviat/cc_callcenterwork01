@@ -22,12 +22,10 @@ jobs:
           name: Upload Code to S3
           command: |
             aws s3 cp www/callcenter/callcenter.zip s3://tst-cd-willgroup1/callcenter.zip
-            aws s3 cp www/work/work.zip s3://tst-cd-willgroup1/work.zip
       - deploy:
           name: Deploy to Development Server
           command: |
             aws deploy create-deployment --application-name callcenter --deployment-group-name callcenter --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=callcenter.zip --region ap-southeast-1
-            aws deploy create-deployment --application-name work --deployment-group-name work --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=work.zip --region ap-southeast-1
   build-prd:
     docker:
       - image: php:7.0-apache
@@ -45,17 +43,14 @@ jobs:
           name: Zip Code
           command: |
             cd www/callcenter && zip -r prd-callcenter.zip .
-            cd ../work && zip -r prd-work.zip .
       - run:
           name: Upload Code to S3
           command: | 
             aws s3 cp www/callcenter/callcenter-prd.zip s3://tst-cd-willgroup1/callcenter-prd.zip
-            aws s3 cp www/work/work-prd.zip s3://tst-cd-willgroup1/work-prd.zip
       - deploy:
           name: Deploy to Production Server
           command: |
             aws deploy create-deployment --application-name callcenter --deployment-group-name prd-callcenter --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-callcenter.zip --region ap-southeast-1
-            aws deploy create-deployment --application-name work --deployment-group-name prd-work --deployment-config-name CodeDeployDefault.AllAtOnce --s3-location bucket=tst-cd-willgroup1,bundleType=zip,key=prd-work.zip --region ap-southeast-1
 workflows:
   version: 2
   build-test-and-approval-deploy:
