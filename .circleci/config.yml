@@ -66,6 +66,8 @@ workflows:
             branches:
               only: develops
       - build-test:
+          requires:
+            - build-devlops
           filters:
             branches:
               only: test
