@@ -1,11 +1,5 @@
 version: 2
 jobs:
-  build-devlops:
-    docker:
-      - image: php:7.0-apache
-    working_directory: /home/saintmedia/
-    steps:
-      - checkout
   build-test:
     docker:
       - image: php:7.0-apache
@@ -61,10 +55,7 @@ workflows:
   version: 2
   build-test-and-approval-deploy:
     jobs:
-      - build-devlops
       - build-test:
-          requires:
-            - build-devlops
           filters:
             branches:
               only: test
