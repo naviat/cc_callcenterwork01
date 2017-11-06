@@ -58,7 +58,7 @@ workflows:
       - build-devs:
           filters:
             branches:
-              only: devlops
+              only: test
       - hold:
           type: approval
           requires:
