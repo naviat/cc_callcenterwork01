@@ -1,4 +1,4 @@
-# Usage111
+# Usage-lan1
 Prerequisites:
 * Your repo need to have 2 branches: `devlops` & `production` 1
 * Create CodeDeply Application for each directory in repo (callcenter, work ..) and the EC2 target (for each environment)
